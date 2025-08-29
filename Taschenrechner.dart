@@ -1,44 +1,49 @@
 import 'dart:io';
 
+double? readNumber(String prompt) {
+  stdout.write(prompt);
+  return double.tryParse(
+    (stdin.readLineSync() ?? '').trim().replaceAll(',', '.'),
+  );
+}
+
 void main() {
-  print('Hallo Taschenrechenr');
+  print('Hallo Taschenrechner');
 
-  stdout.write('Gib deine Zahl ein');
-  String? ersteEingabe = stdin.readLineSync();
+  final zahl1 = readNumber('Gib deine erste Zahl ein: ');
+  final zahl2 = readNumber('Gib deine zweite Zahl ein: ');
 
-  stdout.write('Gib deine zweite Zahl ein');
-  String? zweiteEingabe = stdin.readLineSync();
-
-  stdout.write('Operator eingeben');
-  String? operator = stdin.readLineSync();
-
-  double? zahl1 = double.tryParse(ersteEingabe ?? '');
-  double? zahl2 = double.tryParse(zweiteEingabe ?? '');
+  stdout.write('Operator eingeben (+, -, *, /): ');
+  final operator = stdin.readLineSync()?.trim();
 
   if (zahl1 == null || zahl2 == null || operator == null) {
     print('Ungültige Eingabe.');
     return;
   }
 
-  double? ergebniss;
+  double ergebnis;
 
-  if (operator == '+') {
-    ergebniss = zahl1 + zahl2;
-  } else if (operator == '-') {
-    ergebniss = zahl1 - zahl2;
-  } else if (operator == '*') {
-    ergebniss = zahl1 * zahl2;
-  } else if (operator == '/') {
-    if (zahl2 == 0) {
-      print('Geteilt durch 0 geht nichtg!');
+  switch (operator) {
+    case '+':
+      ergebnis = zahl1 + zahl2;
+      break;
+    case '-':
+      ergebnis = zahl1 - zahl2;
+      break;
+    case '*':
+      ergebnis = zahl1 * zahl2;
+      break;
+    case '/':
+      if (zahl2 == 0) {
+        print('Geteilt durch 0 geht nicht!');
+        return;
+      }
+      ergebnis = zahl1 / zahl2;
+      break;
+    default:
+      print('Operator unbekannt: $operator');
       return;
-    }
-
-    ergebniss = zahl1 / zahl2;
-  } else {
-    print('operator unbekannt: $operator');
-    return;
   }
 
-  print('Ergebnis: $zahl1 $operator $zahl2 = $ergebniss');
+  print('Ergebnis: $zahl1 $operator $zahl2 = $ergebnis');
 }
