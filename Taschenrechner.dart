@@ -26,20 +26,20 @@ void main() {
   switch (operator) {
     case '+':
       ergebnis = zahl1 + zahl2;
-      break;
+
     case '-':
       ergebnis = zahl1 - zahl2;
-      break;
+
     case '*':
       ergebnis = zahl1 * zahl2;
-      break;
+
     case '/':
       if (zahl2 == 0) {
         print('Geteilt durch 0 geht nicht!');
         return;
       }
       ergebnis = zahl1 / zahl2;
-      break;
+
     default:
       print('Operator unbekannt: $operator');
       return;
