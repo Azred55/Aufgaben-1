@@ -3,7 +3,10 @@ import 'dart:io';
 double? readNumber(String prompt) {
   stdout.write(prompt);
   return double.tryParse(
-    (stdin.readLineSync() ?? '').trim().replaceAll(',', '.'),
+    (stdin.readLineSync() ?? '').trim().replaceAll(
+      ',',
+      '.',
+    ), //	Falls stdin.readLineSync() null liefert, wird stattdessen ein leerer String '' verwendet.
   );
 }
 
