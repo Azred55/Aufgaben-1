@@ -34,7 +34,7 @@ void main() {
 }
 
 void vokabelHinzufuegen() {
-  stdout.write("Gib das Wort ein: ");
+  print("Gib das Wort ein: ");
   String? wort = stdin.readLineSync();
 
   if (wort == null || wort.isEmpty) {
@@ -42,7 +42,7 @@ void vokabelHinzufuegen() {
     return;
   }
 
-  stdout.write("Gib die Übersetzung ein: ");
+  print("Gib die Übersetzung ein: ");
   String? uebersetzung = stdin.readLineSync();
 
   if (uebersetzung == null || uebersetzung.isEmpty) {
@@ -67,7 +67,7 @@ void vokabelnAbfragen() {
   woerter.shuffle(Random());
 
   for (var wort in woerter) {
-    stdout.write("Übersetze: $wort → ");
+    print("Übersetze: $wort → ");
     String? antwort = stdin.readLineSync();
 
     if (antwort != null &&
